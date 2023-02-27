@@ -47,25 +47,25 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 
     it('preenche e limpa os campos nome, sobrenome, email e telefone', function(){
         cy.get('#firstName')
-            .type('Marcelo')
-            .should('have.value', 'Marcelo')
-            .clear()
-            .should('have.value', '')
+          .type('Marcelo')
+          .should('have.value', 'Marcelo')
+          .clear()
+          .should('have.value', '')
         cy.get('#lastName')
-            .type('Moreira')
-            .should('have.value', 'Moreira')
-            .clear()
-            .should('have.value', '')
+          .type('Moreira')
+          .should('have.value', 'Moreira')
+          .clear()
+          .should('have.value', '')
         cy.get('#email')
-            .type('marcelo@gmail.com')
-            .should('have.value', 'marcelo@gmail.com')
-            .clear()
-            .should('have.value', '')
+          .type('marcelo@gmail.com')
+          .should('have.value', 'marcelo@gmail.com')
+          .clear()
+          .should('have.value', '')
         cy.get('#phone')
-            .type('123456')
-            .should('have.value', '123456')
-            .clear()
-            .should('have.value', '')
+          .type('123456')
+          .should('have.value', '123456')
+          .clear()
+          .should('have.value', '')
     })
 
     it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', function(){
@@ -74,9 +74,27 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('.error').should('be.visible')
     })
 
-    it.only(' envia o formuário com sucesso usando um comando customizado', function(){
+    it(' envia o formuário com sucesso usando um comando customizado', function(){
         cy.fillMandatoryFieldsAndSubmit()
 
         cy.get('.success').should('be.visible')
+    })
+
+    it('seleciona um produto (YouTube) por seu texto', function(){
+        cy.get('#product')
+          .select("YouTube")
+          .should('have.value', "youtube")
+    })
+
+    it('seleciona um produto (Mentoria) por seu valor (value)', function(){
+        cy.get('#product')
+          .select("mentoria")
+          .should('have.value', "mentoria")
+    })
+
+    it.only('seleciona um produto (Blog) por seu índice', function(){
+        cy.get('#product')
+          .select(1)
+          .should('have.value', "blog")
     })
 })
