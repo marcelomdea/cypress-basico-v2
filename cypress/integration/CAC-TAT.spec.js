@@ -216,4 +216,12 @@ describe('Central de Atendimento ao Cliente TAT', function () {
           expect(body).to.include('CAC TAT')
         })
     })
+
+    it.only('encontra o gato escondino', function(){
+      cy.get('#cat')
+        .invoke('show')
+        .should('be.visible')
+      cy.get('#title')
+        .invoke('text', "CAT TAT")
+    })
 })
